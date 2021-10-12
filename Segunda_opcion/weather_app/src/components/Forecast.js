@@ -5,7 +5,20 @@ import ReactAnimatedWeather from 'react-animated-weather';
 import { Icon } from '@iconify/react';
 import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight} from '@fortawesome/free-solid-svg-icons'
 //import moment from 'moment';
-    export default function Forecast({forecast}){
+    export default function Forecast({
+      temperatura1, 
+      direccion1, 
+      luz1, 
+      velocidad1, 
+      humedad1, 
+      fecha1, 
+      velocidad_tipo1, 
+      visibilidad1, 
+      lluvia1,
+      calor1
+
+
+    }){
         let dir_icon;
         let calor_icon = null,lluvia_icon = null,velocidad_tipo_icon = null,visibilidad_icon = null;
         let tableStyle = {
@@ -68,8 +81,8 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
           animate: true
         };
         
-        const definirPronostico = ((pronostico)=>{
-          if (pronostico.velocidad_tipo = 'alto'){
+        const definirPronostico = ((velocidad_tipo,visibilidad,calor,lluvia)=>{
+          if (velocidad_tipo === 'alto'){
             //con viento alto
             velocidad_tipo_icon = <ReactAnimatedWeather
             icon={ventoso.icon}
@@ -81,7 +94,7 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
             velocidad_tipo_icon = null;
           }
           
-          if (pronostico.visibilidad === 'despejado'){
+          if (visibilidad === 'despejado'){
             //despejado
             visibilidad_icon = <ReactAnimatedWeather
             icon={soleado.icon}
@@ -89,7 +102,7 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
             size={soleado.size}
             animate={soleado.animate}
             />;
-          }else if (pronostico.visibilidad === 'nublado'){
+          }else if (visibilidad === 'nublado'){
             //nublado
             visibilidad_icon = <ReactAnimatedWeather
             icon={nublado.icon}
@@ -99,7 +112,7 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
             />;  
           }
           
-          if (pronostico.calor === 'con' && pronostico.visibilidad === 'despejado'){
+          if (calor === 'con' && visibilidad === 'despejado'){
             //calor
             calor_icon = <ReactAnimatedWeather
             icon={soleado_calor.icon}
@@ -108,7 +121,7 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
             animate={soleado_calor.animate}
             />;
             visibilidad_icon = null;
-          }else if (pronostico.calor === 'con' && pronostico.visibilidad === 'nublado'){
+          }else if (calor === 'con' && visibilidad === 'nublado'){
             calor_icon = <ReactAnimatedWeather
             icon={nublado_calor.icon}
             color={nublado_calor.color}
@@ -116,11 +129,11 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
             animate={nublado_calor.animate}
             />; 
             visibilidad_icon = null;
-          }else if (pronostico.calor == 'sin'){
+          }else if (calor == 'sin'){
             calor_icon = null;
           }
           
-          if (pronostico.lluvia = 'con'){
+          if (lluvia = 'con'){
             //con lluvia
             lluvia_icon = <ReactAnimatedWeather
             icon={lluvia.icon}
@@ -128,7 +141,7 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
             size={lluvia.size}
             animate={lluvia.animate}
             />;
-          }else if (pronostico.lluvia = 'sin'){
+          }else if (lluvia = 'sin'){
             lluvia_icon = null;
           }
         })
@@ -147,51 +160,45 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
    
         return(
             <div style={{marginTop: 20}}>
-                <Card.Group itemsPerRow={4}>
-                    {forecast.slice(1).map((data)=>{
-                        {definirDireccion(data.direccion);}
-                        {definirPronostico(data);}
-                        return(
-                            <Card className='forecast-card'>
-                                <Card.Content>
-                                    <Card.Header className='forecast-date'>                    
-                                        Guatemala {visibilidad_icon} {calor_icon} {velocidad_tipo_icon} {lluvia_icon}  
-                                        </Card.Header>
-                                    <Card.Header className='forecast-header'>                    
-                                        {data.fecha}                                    
-                                        </Card.Header>
-                                        
-                                    <Card.Description className='temp-desc'>
-                                        <div>
-                                        <table style={tableStyle}>
-                                                <tbody>
-                                                <tr>
-                                                <td style = {tabStyle}>{dir_icon} {data.direccion}</td>
-                                                <td style = {tab2Style}>{vel_icon} {data.velocidad} km/h</td>
-                                                </tr>
-                                                <tr>
-                                                <td style = {tabStyle}>{temp_icon} {data.temperatura} C°</td>
-                                                <td style = {tab2Style}>{hum_icon}{data.humedad} %</td>
-                                                </tr>
-                                                <tr>
-                                                <td style = {tabStyle}>{luz_icon} {data.luz}</td>
-                                                </tr>
-                                                </tbody>
-                                        </table>
-                                        </div>
-                                    </Card.Description>
-                                </Card.Content>
-                                  <Card.Content extra>
-                                    Velocidad del viento: {data.velocidad_tipo}, 
-                                    Visibilidad: {data.visibilidad}, 
-                                    {data.lluvia} lluvia,
-                                    {data.calor} calor
-                                  </Card.Content>
-                            </Card>
-                        )
-                    })}
+                    {definirDireccion(direccion1)}
+                    {definirPronostico(velocidad_tipo1,visibilidad1,calor1,lluvia1)}
+                    <Card className='forecast-card'>
+                        <Card.Content>
+                            <Card.Header className='forecast-date'>                    
+                                Guatemala {visibilidad_icon} {calor_icon} {velocidad_tipo_icon} {lluvia_icon}  
+                                </Card.Header>
+                            <Card.Header className='forecast-header'>                    
+                                {fecha1}                                    
+                                </Card.Header>
+                                
+                            <Card.Description className='temp-desc'>
+                                <div>
+                                <table style={tableStyle}>
+                                        <tbody>
+                                        <tr>
+                                        <td style = {tabStyle}>{dir_icon} {direccion1}</td>
+                                        <td style = {tab2Style}>{vel_icon} {velocidad1} km/h</td>
+                                        </tr>
+                                        <tr>
+                                        <td style = {tabStyle}>{temp_icon} {temperatura1} C°</td>
+                                        <td style = {tab2Style}>{hum_icon}{humedad1} %</td>
+                                        </tr>
+                                        <tr>
+                                        <td style = {tabStyle}>{luz_icon} {luz1}</td>
+                                        </tr>
+                                        </tbody>
+                                </table>
+                                </div>
+                            </Card.Description>
+                        </Card.Content>
+                          <Card.Content extra>
+                            Velocidad del viento: {velocidad_tipo1}, 
+                            Visibilidad: {visibilidad1}, 
+                            {lluvia1} lluvia,
+                            {calor1} calor
+                          </Card.Content>
+                    </Card>
 
-                </Card.Group>
             </div>
         )
     }

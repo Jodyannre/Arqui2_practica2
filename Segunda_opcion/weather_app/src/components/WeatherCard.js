@@ -1,11 +1,9 @@
 import React from 'react'
 import { Card, Feed } from 'semantic-ui-react'
-import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ReactAnimatedWeather from 'react-animated-weather';
 import { Icon } from '@iconify/react';
-import { faWind,faCloudRain, faSun,
-  faCloudShowersHeavy,faSnowflake,faCloud,faSmog,
+import { faWind,
   faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight} from '@fortawesome/free-solid-svg-icons'
 
 export default function WeatherCard ({temperatura, direccion, luz,velocidad,humedad,fecha,
