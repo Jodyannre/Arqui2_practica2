@@ -57,13 +57,15 @@
 }
 
 .forecast-card{
-  border-top: 2px solid #ffc107 !important;
+  border-top: 2px solid green !important;
+  height: 350px;
 }
 
 .forecast-date{
   font-family: Poppins  !important;
-  font-size: 15px !important;
+  font-size: 25px !important;
   margin-bottom: 20px; 
+  border-bottom: 2px solid #CBD1D3 !important;
 }
 
 
@@ -95,3 +97,4 @@
     font-size: 18px;
 }
 */
+

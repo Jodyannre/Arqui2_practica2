@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ReactAnimatedWeather from 'react-animated-weather';
 import { Icon } from '@iconify/react';
 import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight} from '@fortawesome/free-solid-svg-icons'
+import { WiWindy,WiCloud } from 'weather-icons-react';
 //import moment from 'moment';
     export default function Forecast({
       temperatura1, 
@@ -15,9 +16,8 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
       velocidad_tipo1, 
       visibilidad1, 
       lluvia1,
-      calor1
-
-
+      calor1,
+      dia1
     }){
         let dir_icon;
         let calor_icon = null,lluvia_icon = null,velocidad_tipo_icon = null,visibilidad_icon = null;
@@ -26,12 +26,12 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
             "gap": "40px 115px"
          }
          let tabStyle = {
-            "width": "75%",
+            "width": "50%",
             "height":"50px",
             "gap": "40px 115px"
          }
          let tab2Style = {
-            "width": "25%",
+            "width": "50%",
             "gap": "40px 115px"
          }
 
@@ -81,7 +81,7 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
           animate: true
         };
         
-        const definirPronostico = ((velocidad_tipo,visibilidad,calor,lluvia)=>{
+        const definirPronostico = ((velocidad_tipo,visibilidad,calor,lluvia_)=>{
           if (velocidad_tipo === 'alto'){
             //con viento alto
             velocidad_tipo_icon = <ReactAnimatedWeather
@@ -90,9 +90,9 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
             size={ventoso.size}
             animate={ventoso.animate}
             />;
-          }else{
-            velocidad_tipo_icon = null;
-          }
+          }else if (velocidad_tipo === 'normal'){
+            velocidad_tipo_icon = <WiWindy size={30} color='#000' />;
+          }else{}
           
           if (visibilidad === 'despejado'){
             //despejado
@@ -129,11 +129,11 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
             animate={nublado_calor.animate}
             />; 
             visibilidad_icon = null;
-          }else if (calor == 'sin'){
+          }else if (calor === 'sin'){
             calor_icon = null;
           }
           
-          if (lluvia = 'con'){
+          if (lluvia_ === 'con'){
             //con lluvia
             lluvia_icon = <ReactAnimatedWeather
             icon={lluvia.icon}
@@ -141,7 +141,7 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
             size={lluvia.size}
             animate={lluvia.animate}
             />;
-          }else if (lluvia = 'sin'){
+          }else if (lluvia_ === 'sin'){
             lluvia_icon = null;
           }
         })
@@ -157,7 +157,11 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
                  dir_icon = <FontAwesomeIcon icon={faArrowRight} size='2x' color='black'/>;
                }            
         })
-   
+        /*
+        if (velocidad1 === undefined){
+          return (<div></div>)
+        }
+        */
         return(
             <div style={{marginTop: 20}}>
                     {definirDireccion(direccion1)}
@@ -168,7 +172,7 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
                                 Guatemala {visibilidad_icon} {calor_icon} {velocidad_tipo_icon} {lluvia_icon}  
                                 </Card.Header>
                             <Card.Header className='forecast-header'>                    
-                                {fecha1}                                    
+                                {fecha1},{dia1}                                    
                                 </Card.Header>
                                 
                             <Card.Description className='temp-desc'>
@@ -184,7 +188,7 @@ import { faWind,faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight
                                         <td style = {tab2Style}>{hum_icon}{humedad1} %</td>
                                         </tr>
                                         <tr>
-                                        <td style = {tabStyle}>{luz_icon} {luz1}</td>
+                                        <td style = {tabStyle}>{luz_icon} {luz1} Lumen</td>
                                         </tr>
                                         </tbody>
                                 </table>

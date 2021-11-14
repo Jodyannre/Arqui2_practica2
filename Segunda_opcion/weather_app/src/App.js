@@ -9,7 +9,8 @@ import { Loader } from 'semantic-ui-react'
 import { Card, Feed } from 'semantic-ui-react'
 
 const URL = 'https://api.openweathermap.org/data/2.5/onecall';
-const URL2 = 'http://localhost:3001/datos'
+const URL2 = 'http://localhost:3001/DATOSCRUD'
+const URL3 = 'http://localhost:3001/PRONOSTICO1'
 const API_KEY = 'b94a885f25fbd1daf17a3ca0548205ae';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
   const [Visibilidad, setVisibilidad] = useState(null);
   const [Lluvia, setLluvia] = useState(null);
   const [Calor, setCalor] = useState(null);
+  const [dia, setDia] = useState(null);
 
   const [temperatura1, setTemperatura1] = useState(null);
   const [luz1, setLuz1] = useState(null);
@@ -36,6 +38,8 @@ function App() {
   const [visibilidad1, setVisibilidad1] = useState(null);
   const [lluvia1, setLluvia1] = useState(null);
   const [calor1, setCalor1] = useState(null);
+  const [dia1, setDia1] = useState(null);
+
 
   const [temperatura2, setTemperatura2] = useState(null);
   const [luz2, setLuz2] = useState(null);
@@ -47,6 +51,8 @@ function App() {
   const [visibilidad2, setVisibilidad2] = useState(null);
   const [lluvia2, setLluvia2] = useState(null);
   const [calor2, setCalor2] = useState(null);
+  const [dia2, setDia2] = useState(null);
+
 
   const [temperatura3, setTemperatura3] = useState(null);
   const [luz3, setLuz3] = useState(null);
@@ -58,6 +64,8 @@ function App() {
   const [visibilidad3, setVisibilidad3] = useState(null);
   const [lluvia3, setLluvia3] = useState(null);
   const [calor3, setCalor3] = useState(null);
+  const [dia3, setDia3] = useState(null);
+
 
   const [temperatura4, setTemperatura4] = useState(null);
   const [luz4, setLuz4] = useState(null);
@@ -69,6 +77,8 @@ function App() {
   const [visibilidad4, setVisibilidad4] = useState(null);
   const [lluvia4, setLluvia4] = useState(null);
   const [calor4, setCalor4] = useState(null);
+  const [dia4, setDia4] = useState(null);
+
 
   const [temperatura5, setTemperatura5] = useState(null);
   const [luz5, setLuz5] = useState(null);
@@ -80,6 +90,8 @@ function App() {
   const [visibilidad5, setVisibilidad5] = useState(null);
   const [lluvia5, setLluvia5] = useState(null);
   const [calor5, setCalor5] = useState(null);
+  const [dia5, setDia5] = useState(null);
+
 
   const [temperatura6, setTemperatura6] = useState(null);
   const [luz6, setLuz6] = useState(null);
@@ -91,22 +103,25 @@ function App() {
   const [visibilidad6, setVisibilidad6] = useState(null);
   const [lluvia6, setLluvia6] = useState(null);
   const [calor6, setCalor6] = useState(null);
+  const [dia6, setDia6] = useState(null);
+
 
   const getData = async () => {
     try {
 
       axios.get(URL2)
       .then((weatherData) => {
-        setTemperatura(weatherData.data[0].temperatura);
-        setLuz(weatherData.data[0].luz);
-        setHumedad(weatherData.data[0].humedad);
-        setDireccion(weatherData.data[0].direccion);
-        setVelocidad(weatherData.data[0].velocidad);
-        setFecha(weatherData.data[0].fecha);
-        setVelocidad_tipo(weatherData.data[0].velocidad_tipo);
-        setVisibilidad(weatherData.data[0].visibilidad);
-        setLluvia(weatherData.data[0].lluvia);
-        setCalor(weatherData.data[0].calor);
+        setFecha(weatherData.data[0]);
+        setTemperatura(weatherData.data[1]);
+        setLuz(weatherData.data[2]);
+        setDireccion(weatherData.data[3]);
+        setVelocidad(weatherData.data[4]);
+        setHumedad(weatherData.data[5]);
+        setVelocidad_tipo(weatherData.data[6]);
+        setVisibilidad(weatherData.data[7]);
+        setLluvia(weatherData.data[8]);
+        setCalor(weatherData.data[9]);
+        setDia(weatherData.data[10])
         setLoading(false);
       })  
     } catch (err) {
@@ -121,77 +136,84 @@ function App() {
   const getData2 = async () => {
     try {
 
-      axios.get(URL2)
+      axios.get(URL3)
       .then((weatherData) => {  
+        console.log(weatherData);
+        setFecha1(weatherData.data[0]);
+        setTemperatura1(weatherData.data[1]);
+        setLuz1(weatherData.data[2]);
+        setDireccion1(weatherData.data[3]);
+        setVelocidad1(weatherData.data[4]);
+        setHumedad1(weatherData.data[5]);
+        setVelocidad_tipo1(weatherData.data[6]);
+        setVisibilidad1(weatherData.data[7]);
+        setLluvia1(weatherData.data[8]);
+        setCalor1(weatherData.data[9]);
+        setDia1(weatherData.data[10]);
 
-        setTemperatura1(weatherData.data[1].temperatura);
-        setLuz1(weatherData.data[1].luz);
-        setHumedad1(weatherData.data[1].humedad);
-        setDireccion1(weatherData.data[1].direccion);
-        setVelocidad1(weatherData.data[1].velocidad);
-        setFecha1(weatherData.data[1].fecha);
-        setVelocidad_tipo1(weatherData.data[1].velocidad_tipo);
-        setVisibilidad1(weatherData.data[1].visibilidad);
-        setLluvia1(weatherData.data[1].lluvia);
-        setCalor1(weatherData.data[1].calor);
+        setFecha2(weatherData.data[11]);
+        setTemperatura2(weatherData.data[12]);
+        setLuz2(weatherData.data[13]);
+        setDireccion2(weatherData.data[14]);
+        setVelocidad2(weatherData.data[15]);
+        setHumedad2(weatherData.data[16]);
+        setVelocidad_tipo2(weatherData.data[17]);
+        setVisibilidad2(weatherData.data[18]);
+        setLluvia2(weatherData.data[19]);
+        setCalor2(weatherData.data[20]);
+        setDia2(weatherData.data[21]);
 
+
+        setFecha3(weatherData.data[22]);
+        setTemperatura3(weatherData.data[23]);
+        setLuz3(weatherData.data[24]);
+        setDireccion3(weatherData.data[25]);
+        setVelocidad3(weatherData.data[26]);
+        setHumedad3(weatherData.data[27]);
+        setVelocidad_tipo3(weatherData.data[28]);
+        setVisibilidad3(weatherData.data[29]);
+        setLluvia3(weatherData.data[30]);
+        setCalor3(weatherData.data[31]);
+        setDia3(weatherData.data[32]);
+
+        setFecha4(weatherData.data[33]);
+        setTemperatura4(weatherData.data[34]);
+        setLuz4(weatherData.data[35]);
+        setDireccion4(weatherData.data[36]);
+        setVelocidad4(weatherData.data[37]);
+        setHumedad4(weatherData.data[38]);
+        setVelocidad_tipo4(weatherData.data[39]);
+        setVisibilidad4(weatherData.data[40]);
+        setLluvia4(weatherData.data[41]);
+        setCalor4(weatherData.data[42]);
+        setDia4(weatherData.data[43]);
         
-        setTemperatura2(weatherData.data[2].temperatura);
-        setLuz2(weatherData.data[2].luz);
-        setHumedad2(weatherData.data[2].humedad);
-        setDireccion2(weatherData.data[2].direccion);
-        setVelocidad2(weatherData.data[2].velocidad);
-        setFecha2(weatherData.data[2].fecha);
-        setVelocidad_tipo2(weatherData.data[2].velocidad_tipo);
-        setVisibilidad2(weatherData.data[2].visibilidad);
-        setLluvia2(weatherData.data[2].lluvia);
-        setCalor2(weatherData.data[2].calor);
+        setFecha5(weatherData.data[44]);
+        setTemperatura5(weatherData.data[45]);
+        setLuz5(weatherData.data[46]);
+        setDireccion5(weatherData.data[47]);
+        setVelocidad5(weatherData.data[48]);
+        setHumedad5(weatherData.data[49]);
+        setVelocidad_tipo5(weatherData.data[50]);
+        setVisibilidad5(weatherData.data[51]);
+        setLluvia5(weatherData.data[52]);
+        setCalor5(weatherData.data[53]);
+        setDia5(weatherData.data[54]);
 
-        setTemperatura3(weatherData.data[3].temperatura);
-        setLuz3(weatherData.data[3].luz);
-        setHumedad3(weatherData.data[3].humedad);
-        setDireccion3(weatherData.data[3].direccion);
-        setVelocidad3(weatherData.data[3].velocidad);
-        setFecha3(weatherData.data[3].fecha);
-        setVelocidad_tipo3(weatherData.data[3].velocidad_tipo);
-        setVisibilidad3(weatherData.data[3].visibilidad);
-        setLluvia3(weatherData.data[3].lluvia);
-        setCalor3(weatherData.data[3].calor);
-
-
-        setTemperatura4(weatherData.data[4].temperatura);
-        setLuz4(weatherData.data[4].luz);
-        setHumedad4(weatherData.data[4].humedad);
-        setDireccion4(weatherData.data[4].direccion);
-        setVelocidad4(weatherData.data[4].velocidad);
-        setFecha4(weatherData.data[4].fecha);
-        setVelocidad_tipo4(weatherData.data[4].velocidad_tipo);
-        setVisibilidad4(weatherData.data[4].visibilidad);
-        setLluvia4(weatherData.data[4].lluvia);
-        setCalor4(weatherData.data[4].calor);
-
-        setTemperatura5(weatherData.data[5].temperatura);
-        setLuz5(weatherData.data[5].luz);
-        setHumedad5(weatherData.data[5].humedad);
-        setDireccion5(weatherData.data[5].direccion);
-        setVelocidad5(weatherData.data[5].velocidad);
-        setFecha5(weatherData.data[5].fecha);
-        setVelocidad_tipo5(weatherData.data[5].velocidad_tipo);
-        setVisibilidad5(weatherData.data[5].visibilidad);
-        setLluvia5(weatherData.data[5].lluvia);
-        setCalor5(weatherData.data[5].calor);
+        setFecha6(weatherData.data[55]);
+        setTemperatura6(weatherData.data[56]);
+        setLuz6(weatherData.data[57]);
+        setDireccion6(weatherData.data[58]);
+        setVelocidad6(weatherData.data[59]);
+        setHumedad6(weatherData.data[60]);
+        setVelocidad_tipo6(weatherData.data[61]);
+        setVisibilidad6(weatherData.data[62]);
+        setLluvia6(weatherData.data[63]);
+        setCalor6(weatherData.data[64]);
+        setDia6(weatherData.data[65]);
         
-        setTemperatura6(weatherData.data[6].temperatura);
-        setLuz6(weatherData.data[6].luz);
-        setHumedad6(weatherData.data[6].humedad);
-        setDireccion6(weatherData.data[6].direccion);
-        setVelocidad6(weatherData.data[6].velocidad);
-        setFecha6(weatherData.data[6].fecha);
-        setVelocidad_tipo6(weatherData.data[6].velocidad_tipo);
-        setVisibilidad6(weatherData.data[6].visibilidad);
-        setLluvia6(weatherData.data[6].lluvia);
-        setCalor6(weatherData.data[6].calor);   
         setLoading(false);
+        
       })  
     } catch (err) {
       console.error(err.message);
@@ -228,6 +250,7 @@ function App() {
         Visibilidad = {Visibilidad}
         Lluvia = {Lluvia}
         Calor = {Calor}
+        dia = {dia}
         />
       ) }
 
@@ -242,7 +265,8 @@ function App() {
               velocidad_tipo1 = {velocidad_tipo1}
               visibilidad1 = {visibilidad1}
               lluvia1 = {lluvia1}
-              calor1 = {calor1}            
+              calor1 = {calor1}   
+              dia1 = {dia1}         
               />
       <Forecast 
               temperatura1 = {temperatura2}
@@ -254,7 +278,8 @@ function App() {
               velocidad_tipo1 = {velocidad_tipo2}
               visibilidad1 = {visibilidad2}
               lluvia1 = {lluvia2}
-              calor1 = {calor2}            
+              calor1 = {calor2}   
+              dia1 = {dia2}         
               />
       <Forecast 
               temperatura1 = {temperatura3}
@@ -266,7 +291,8 @@ function App() {
               velocidad_tipo1 = {velocidad_tipo3}
               visibilidad1 = {visibilidad3}
               lluvia1 = {lluvia3}
-              calor1 = {calor3}            
+              calor1 = {calor3}  
+              dia1 = {dia3}          
               />     
             <Forecast 
               temperatura1 = {temperatura4}
@@ -278,7 +304,8 @@ function App() {
               velocidad_tipo1 = {velocidad_tipo4}
               visibilidad1 = {visibilidad4}
               lluvia1 = {lluvia4}
-              calor1 = {calor4}            
+              calor1 = {calor4}   
+              dia1 = {dia4}            
               />      
             <Forecast 
               temperatura1 = {temperatura5}
@@ -290,7 +317,8 @@ function App() {
               velocidad_tipo1 = {velocidad_tipo5}
               visibilidad1 = {visibilidad5}
               lluvia1 = {lluvia5}
-              calor1 = {calor5}            
+              calor1 = {calor5} 
+              dia1 = {dia5}              
               />
             <Forecast 
               temperatura1 = {temperatura6}
@@ -302,7 +330,8 @@ function App() {
               velocidad_tipo1 = {velocidad_tipo6}
               visibilidad1 = {visibilidad6}
               lluvia1 = {lluvia6}
-              calor1 = {calor6}            
+              calor1 = {calor6}  
+              dia1 = {dia6}             
               />   
     </Card.Group>
     </div>

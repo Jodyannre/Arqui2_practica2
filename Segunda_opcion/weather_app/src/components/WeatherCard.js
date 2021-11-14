@@ -5,9 +5,10 @@ import ReactAnimatedWeather from 'react-animated-weather';
 import { Icon } from '@iconify/react';
 import { faWind,
   faTemperatureHigh,faArrowUp,faArrowDown,faArrowLeft,faArrowRight} from '@fortawesome/free-solid-svg-icons'
+  import { WiWindy } from 'weather-icons-react';
 
 export default function WeatherCard ({temperatura, direccion, luz,velocidad,humedad,fecha,
-  Velocidad_tipo,Visibilidad,Lluvia,Calor}) {
+  Velocidad_tipo,Visibilidad,Lluvia,Calor,dia}) {
 
 let dir_icon;
 let calor_icon = null,lluvia_icon = null,velocidad_tipo_icon = null,visibilidad_icon = null;
@@ -79,8 +80,8 @@ if (Velocidad_tipo === 'alto'){
   size={ventoso.size}
   animate={ventoso.animate}
   />;
-}else{
-  velocidad_tipo_icon = null;
+}else if (Velocidad_tipo === 'normal'){
+  velocidad_tipo_icon = <WiWindy size={40} color='#000' />;
 }
 
 if (Visibilidad === 'despejado'){
@@ -133,6 +134,7 @@ if (Lluvia === 'con'){
 }
 
 
+
 return (
   <Card className = 'weather-card-main'>
     <Card.Content className='weather-card'>
@@ -145,7 +147,8 @@ return (
       <Feed>
         <Feed.Event>
           <Feed.Content>
-              <h5 className='weather-card-child'>{fecha}</h5>
+              <h5 className='weather-card-child'>{fecha
+              }, {dia}</h5>
               <div className='weather-card'>
                 <div className='weather-card-child'>
                     {temp_icon}<b></b> {`${Math.floor(temperatura)} C°`}
